@@ -67,9 +67,9 @@ def start():
     print(json.dumps(data))
 
     GameBoard = mCode.Board.Board(bH, bW, bS, food, aliveSnakes)
-    BattleSnake = mCode.Snake.Snake(len(mySnake["body"]),[mySnake["body"][0]["x"],mySnake["body"][0]["y"]])
+    BattleSnake = mCode.Snake.Snake(len(mySnake["body"]),[mySnake["body"][0]["y"],mySnake["body"][0]["x"]])
     print(str(BattleSnake))
-
+    print(str(GameBoard))
     color = "#00FF00"
     print("initialize complete")
     return start_response(color)
