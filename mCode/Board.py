@@ -36,7 +36,7 @@ class Board:
                 self.field.append([True] * self.boardWidth)
                 self.initField.append([True] * self.boardWidth)
 
-        self.updateBlocks(food, aliveSnakes)
+        #self.updateBlocks(food, aliveSnakes)
 
         #self.cleanup()
 
