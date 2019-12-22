@@ -97,7 +97,7 @@ def move():
     """
     print(json.dumps(data))
     directions = ['up', 'down', 'left', 'right']
-    safeMoves = BattleSnake.checkSurroundings(GameBoard)
+    """safeMoves = BattleSnake.checkSurroundings(GameBoard)
     print(str(GameBoard))
     print("Fugas Battlesnakes safe options are: {}".format(safeMoves))
     if safeMoves == []:
@@ -105,7 +105,7 @@ def move():
         return ('up') # if no free tiles are found snake will just suicide upwards
     direction = random.choice(safeMoves)
 
-    print ("Fugas Battlesnake move decision: {}".format(direction))
+    print ("Fugas Battlesnake move decision: {}".format(direction))"""
     return 'right'
 
 @bottle.post('/end')
