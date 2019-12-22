@@ -102,8 +102,7 @@ def move():
     print("Fugas Battlesnakes safe options are: {}".format(safeMoves))
     if safeMoves == []:
         print ("lellek")
-        return ('up')
-      # if no free tiles are found snake will just suicide upwards
+        return ('up') # if no free tiles are found snake will just suicide upwards
     direction = random.choice(safeMoves)
 
     print ("Fugas Battlesnake move decision: {}".format(direction))
@@ -132,6 +131,6 @@ if __name__ == '__main__':
         application,
         host=os.getenv('IP', '0.0.0.0'),
         port=os.getenv('PORT', '8080'),
-        debug=os.getenv('DEBUG', True)
+        debug=os.getenv('DEBUG', False)
     )
 

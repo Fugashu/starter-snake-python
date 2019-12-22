@@ -1,7 +1,7 @@
 import mCode.Board
 
 class Snake:
-    def __init_subclass__(self):
+    def __init__(self):
         pass
 
     def initialize(self, length, headPos):

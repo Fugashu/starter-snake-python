@@ -31,8 +31,8 @@ class Board:
     #   Calculate the occupied blocks and store them
         for rows in range(self.boardHeight):
                 self.field.append([True] * self.boardWidth)
-
         self.updateBlocks(food, aliveSnakes)
+
         self.cleanup()
 
     def updateBlocks(self, food, aliveSnakes):
@@ -44,7 +44,6 @@ class Board:
                 occ_y = element["y"]
                 print("Occupied field: x: {}  y: {}".format(element["x"], element["y"]))
                 self.field[occ_y][occ_x] = False
-
 
     def isFree(self, yCoordinate, xCoordinate):
         """
