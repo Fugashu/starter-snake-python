@@ -2,7 +2,9 @@ import mCode.Board
 
 class Snake:
     def __init__(self):
-        pass
+        self.length = None
+        self.headPos = None
+        self.fitness = -1
 
     def initialize(self, length, headPos):
         self.length = length

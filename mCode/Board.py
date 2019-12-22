@@ -2,7 +2,11 @@ class Board:
 
     def __init__(self):
         self.occupiedBlocks = []
-
+        self.field = []  # True/False values. True if tile is free.
+        self.wallCoordinates = []
+        self.boardSize = None
+        self.boardHeight = None
+        self.boardWidth = None
 
     #   Override string function to output Board values.
     def __str__(self):
@@ -15,9 +19,8 @@ class Board:
         self.boardSize = bS
         self.boardHeight = bH
         self.boardWidth = bW
-        self.wallCoordinates = []
-        self.occupiedBlocks = []
-        self.field = []  # True/False values. True if tile is free.
+
+
 
     #   Calculate wall tiles and put them into 2D array
         for i in range(self.boardWidth+2):
