@@ -43,6 +43,8 @@ class Board:
     def updateBlocks(self, food, aliveSnakes):
         print("in update blocks: self.field:")
         print(self.field)
+        self.occupiedBlocks = []
+        self.field = self.initField
         for index in range(len(aliveSnakes)):
             self.occupiedBlocks.append(aliveSnakes[index]["body"])
         for index in range(len(self.occupiedBlocks)):
@@ -68,8 +70,3 @@ class Board:
             return True
         else:
             return False
-
-    def cleanup(self):
-        self.occupiedBlocks = []
-        self.field = self.initField
-        #   Calculate the occupied blocks and store them
