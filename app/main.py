@@ -66,8 +66,8 @@ def start():
 
     print(json.dumps(data))
 
-    GameBoard = mCode.Board.Board(bH, bW, bS, food, aliveSnakes)
-    BattleSnake = mCode.Snake.Snake(len(mySnake["body"]),[mySnake["body"][0]["y"],mySnake["body"][0]["x"]])
+    GameBoard.initialize(bH, bW, bS, food, aliveSnakes)
+    BattleSnake.initialize(len(mySnake["body"]),[mySnake["body"][0]["y"],mySnake["body"][0]["x"]])
     print(str(BattleSnake))
     print(str(GameBoard))
 
@@ -80,14 +80,17 @@ def start():
 @bottle.post('/move')
 def move():
     """
-    TODO: Update Board Matrix accordingly. (Occupied blocks)
-    TODO: Update SNAKE HEAD LOCATION!!!!
-    TODO: Currently failing after a few turns
     """
     global BattleSnake
     global GameBoard
-    data = bottle.request.json
 
+    data = bottle.request.json
+    food = data["board"]["food"]  # food[index]["key"] => key = x,y
+    aliveSnakes = data["board"]["snakes"]  # aliveSnakes[index]["key"] => key = id,name,health,body
+    mySnake = data["you"]  # mySnake["key"] => key = id,name,health,body(array with x,y coords)
+
+    GameBoard.updateBlocks(food, aliveSnakes)
+    BattleSnake.updateHeadPos([mySnake["body"][0]["y"],mySnake["body"][0]["x"]])
     """
     TODO: Using the data from the endpoint request object, your
             snake AI must choose a direction to move in.
@@ -123,9 +126,8 @@ def end():
 application = bottle.default_app()
 
 if __name__ == '__main__':
-    global BattleSnake
-    global GameBoard
-
+    GameBoard = mCode.Board.Board()
+    BattleSnake = mCode.Snake.Snake()
     bottle.run(
         application,
         host=os.getenv('IP', '0.0.0.0'),
