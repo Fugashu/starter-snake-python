@@ -37,12 +37,17 @@ class Board:
         self.cleanup()
 
     def updateBlocks(self, food, aliveSnakes):
+        print("in update blocks: self.field:")
+        print(self.field)
         for index in range(len(aliveSnakes)):
             self.occupiedBlocks.append(aliveSnakes[index]["body"])
         for index in range(len(self.occupiedBlocks)):
             for element in self.occupiedBlocks[index]:
                 occ_x = element["x"]
                 occ_y = element["y"]
+                print (occ_x)
+                print (occ_y)
+
                 print("Occupied field: x: {}  y: {}".format(element["x"], element["y"]))
                 self.field[occ_y][occ_x] = False
 
