@@ -70,6 +70,8 @@ def start():
     BattleSnake = mCode.Snake.Snake(len(mySnake["body"]),[mySnake["body"][0]["y"],mySnake["body"][0]["x"]])
     print(str(BattleSnake))
     print(str(GameBoard))
+
+    #print(GameBoard.isFree(1,0)) #Test function if specific tile is free
     color = "#00FF00"
     print("initialize complete")
     return start_response(color)
@@ -77,6 +79,13 @@ def start():
 
 @bottle.post('/move')
 def move():
+    """
+    TODO: Update Board Matrix accordingly. (Occupied blocks)
+    TODO: Update SNAKE HEAD LOCATION!!!!
+    TODO: Currently failing after a few turns
+    """
+    global BattleSnake
+    global GameBoard
     data = bottle.request.json
 
     """
@@ -84,12 +93,18 @@ def move():
             snake AI must choose a direction to move in.
     """
     print(json.dumps(data))
-
     directions = ['up', 'down', 'left', 'right']
-    direction = random.choice(directions)
+    safeMoves = BattleSnake.checkSurroundings(GameBoard)
+    print(str(GameBoard))
+    print("Fugas Battlesnakes safe options are: {}".format(safeMoves))
+    if safeMoves == []:
+        print ("lellek")
+        return ('up')
+      # if no free tiles are found snake will just suicide upwards
+    direction = random.choice(safeMoves)
 
+    print ("Fugas Battlesnake move decision: {}".format(direction))
     return move_response(direction)
-
 
 @bottle.post('/end')
 def end():
@@ -99,6 +114,7 @@ def end():
     TODO: If your snake AI was stateful,
         clean up any stateful objects here.
     """
+    print ("my snake is dead")
     print(json.dumps(data))
     return end_response()
 
