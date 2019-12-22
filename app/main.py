@@ -9,8 +9,6 @@ from .api import ping_response, start_response, move_response, end_response
 import mCode.Board
 import mCode.Snake
 
-GameBoard = mCode.Board.Board()
-BattleSnake = mCode.Snake.Snake()
 
 @bottle.route('/')
 def index():
@@ -127,6 +125,9 @@ def end():
 application = bottle.default_app()
 
 if __name__ == '__main__':
+    GameBoard = mCode.Board.Board()
+    BattleSnake = mCode.Snake.Snake()
+
     bottle.run(
         application,
         host=os.getenv('IP', '0.0.0.0'),
