@@ -106,7 +106,7 @@ def move():
     direction = random.choice(safeMoves)
 
     print ("Fugas Battlesnake move decision: {}".format(direction))
-    return move_response(direction)
+    return 'right'
 
 @bottle.post('/end')
 def end():
