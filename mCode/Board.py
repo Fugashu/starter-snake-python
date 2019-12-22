@@ -1,7 +1,7 @@
 class Board:
 
     def __init__(self):
-        pass
+        self.occupiedBlocks = []
 
 
     #   Override string function to output Board values.
