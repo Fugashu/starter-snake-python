@@ -32,9 +32,11 @@ class Board:
     #   Calculate the occupied blocks and store them
         for rows in range(self.boardHeight):
                 self.field.append([True] * self.boardWidth)
+
+        self.initField = self.field
         self.updateBlocks(food, aliveSnakes)
 
-        self.cleanup()
+        #self.cleanup()
 
     def updateBlocks(self, food, aliveSnakes):
         print("in update blocks: self.field:")
@@ -67,7 +69,5 @@ class Board:
 
     def cleanup(self):
         self.occupiedBlocks = []
-        self.field = []
+        self.field = self.initField
         #   Calculate the occupied blocks and store them
-        for rows in range(self.boardHeight):
-            self.field.append([True] * self.boardWidth)
