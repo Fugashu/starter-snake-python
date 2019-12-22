@@ -104,11 +104,11 @@ def move():
     print("Fugas Battlesnakes safe options are: {}".format(safeMoves))
     if safeMoves == []:
         print ("lellek")
-        return ('up') # if no free tiles are found snake will just suicide upwards
+        return {"move": "up"}# if no free tiles are found snake will just suicide upwards
     direction = random.choice(safeMoves)
 
     print ("Fugas Battlesnake move decision: {}".format(direction))
-    return "right"
+    return { "move": direction }
 
 @bottle.post('/end')
 def end():

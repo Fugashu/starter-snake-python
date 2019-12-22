@@ -20,8 +20,6 @@ class Board:
         self.boardHeight = bH
         self.boardWidth = bW
 
-
-
     #   Calculate wall tiles and put them into 2D array
         for i in range(self.boardWidth+2):
             self.wallCoordinates.append([-1, i-1])
