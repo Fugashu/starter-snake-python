@@ -4,9 +4,11 @@ class Board:
         self.occupiedBlocks = []
         self.field = []  # True/False values. True if tile is free.
         self.wallCoordinates = []
+        self.initField = []
         self.boardSize = None
         self.boardHeight = None
         self.boardWidth = None
+
 
     #   Override string function to output Board values.
     def __str__(self):
@@ -32,8 +34,8 @@ class Board:
     #   Calculate the occupied blocks and store them
         for rows in range(self.boardHeight):
                 self.field.append([True] * self.boardWidth)
+                self.initField.append([True] * self.boardWidth)
 
-        self.initField = self.field
         self.updateBlocks(food, aliveSnakes)
 
         #self.cleanup()
