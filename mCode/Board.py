@@ -40,6 +40,7 @@ class Board:
         #self.cleanup()
 
     def updateBlocks(self, food, aliveSnakes):
+        self.field = [[True for x in range(self.boardHeight)] for y in range(self.boardWidth)]
         print("in update blocks: self.field:")
         print(self.field)
         self.occupiedBlocks = []
