@@ -2,7 +2,7 @@ import json
 import os
 import random
 import bottle
-from .api import ping_response, start_response, move_response, end_response
+from api import ping_response, start_response, move_response, end_response
 
 
 ### myStuff ###
@@ -42,8 +42,7 @@ def ping():
 
 @bottle.post('/start')
 def start():
-    global BattleSnake
-    global GameBoard
+
     data = bottle.request.json
    # data = json.loads(data)
 
@@ -83,8 +82,6 @@ def start():
 def move():
     """
     """
-    global BattleSnake
-    global GameBoard
 
     data = bottle.request.json
     food = data["board"]["food"]  # food[index]["key"] => key = x,y
@@ -113,14 +110,11 @@ def move():
 @bottle.post('/end')
 def end():
     data = bottle.request.json
-    global GameBoard
-    global BattleSnake
     """
     TODO: If your snake AI was stateful,
         clean up any stateful objects here.
     """
-    del(GameBoard)
-    del(BattleSnake)
+    print (GameBoard.field)
     print ("my snake is dead")
     print(json.dumps(data))
     return end_response()
