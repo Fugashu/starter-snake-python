@@ -32,9 +32,8 @@ class Board:
             self.wallCoordinates.append([i, self.boardHeight])
 
     #   Calculate the occupied blocks and store them
-        for rows in range(self.boardHeight):
-                self.field.append([True] * self.boardWidth)
-                self.initField.append([True] * self.boardWidth)
+        self.field = [[True for x in range(self.boardHeight)] for y in range(self.boardWidth)]
+
 
         #self.updateBlocks(food, aliveSnakes)
 
@@ -44,7 +43,6 @@ class Board:
         print("in update blocks: self.field:")
         print(self.field)
         self.occupiedBlocks = []
-        self.field = self.initField
         for index in range(len(aliveSnakes)):
             self.occupiedBlocks.append(aliveSnakes[index]["body"])
         for index in range(len(self.occupiedBlocks)):
