@@ -5,6 +5,7 @@ class Board:
         self.field = []  # True/False values. True if tile is free.
         self.wallCoordinates = []
         self.initField = []
+        self.foodBlocks =[]
         self.boardSize = None
         self.boardHeight = None
         self.boardWidth = None
@@ -33,28 +34,27 @@ class Board:
 
     #   Calculate the occupied blocks and store them
         self.field = [[True for x in range(self.boardHeight)] for y in range(self.boardWidth)]
-
-
-        #self.updateBlocks(food, aliveSnakes)
-
-        #self.cleanup()
+        self.foodBlocks = [[False for x in range(self.boardHeight)] for y in range(self.boardWidth)]
 
     def updateBlocks(self, food, aliveSnakes):
-        self.field = [[True for x in range(self.boardHeight)] for y in range(self.boardWidth)]
-        print("in update blocks: self.field:")
-        print(self.field)
+
         self.occupiedBlocks = []
+        self.field = [[True for x in range(self.boardHeight)] for y in range(self.boardWidth)]
+        self.foodBlocks = [[False for x in range(self.boardHeight)] for y in range(self.boardWidth)]
+       # print("in update blocks: self.field:")
+       # print(self.field)
+
         for index in range(len(aliveSnakes)):
             self.occupiedBlocks.append(aliveSnakes[index]["body"])
         for index in range(len(self.occupiedBlocks)):
             for element in self.occupiedBlocks[index]:
                 occ_x = element["x"]
                 occ_y = element["y"]
-                print (occ_x)
-                print (occ_y)
-
                 print("Occupied field: x: {}  y: {}".format(element["x"], element["y"]))
                 self.field[occ_y][occ_x] = False
+        # Loop through food array
+        for index in range(len(food)):
+            self.foodBlocks[food[index]["y"]][food[index]["x"]] = True
 
     def isFree(self, yCoordinate, xCoordinate):
         """
@@ -65,6 +65,19 @@ class Board:
         if yCoordinate >= self.boardHeight or yCoordinate < 0:
             return False
 
+        if self.field[yCoordinate][xCoordinate]:
+            return True
+        else:
+            return False
+
+    def isFoodBlock(self, yCoordinate, xCoordinate):
+        """
+        :return: true if the block has food
+        """
+        if xCoordinate >= self.boardWidth or xCoordinate < 0:
+            return False
+        if yCoordinate >= self.boardHeight or yCoordinate < 0:
+            return False
         if self.field[yCoordinate][xCoordinate]:
             return True
         else:

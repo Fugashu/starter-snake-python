@@ -2,13 +2,14 @@ import json
 import os
 import random
 import bottle
-from .api import ping_response, start_response, move_response, end_response
+import numpy as np
+from api import ping_response, start_response, move_response, end_response
 
 
 ### myStuff ###
 import mCode.Board
 import mCode.Snake
-
+import mCode.NeuralNetwork
 GameBoard = mCode.Board.Board()
 BattleSnake = mCode.Snake.Snake()
 
@@ -124,6 +125,9 @@ def end():
 application = bottle.default_app()
 
 if __name__ == '__main__':
+    Neurasnake = mCode.NeuralNetwork.Snakework()
+
+    Neurasnake.forward(np.array([np.zeros(26)]))
     bottle.run(
         application,
         host=os.getenv('IP', '0.0.0.0'),
